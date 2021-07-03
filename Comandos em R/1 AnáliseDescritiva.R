@@ -77,7 +77,7 @@ faces(A, main='random faces')
 
 
 # Gráficos de estrelas - 'Radar'
-publicfirms <- read.table('http://wiki.icmc.usp.br/images/d/d6/Publicfirms.txt')
+publicfirms <- read.table('https://raw.githubusercontent.com/cibelerusso/AnaliseMultivariadaEAprendizadoNaoSupervisionado/master/Dados/Publicfirms.txt')
 
 colnames(publicfirms) <- c("X1", "X2", "X3", "X4", "X5", "X6", "X7", "X8", "Empresa")
 rownames(publicfirms) <- publicfirms[,9]

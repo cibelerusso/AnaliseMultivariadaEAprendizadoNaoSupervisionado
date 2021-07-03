@@ -1,3 +1,6 @@
+# SME0822 Análise Multivariada e Aprendizado Supervisionado
+# Prof. Cibele Russo - ICMC USP
+
 # Correlação é transitiva?
 
 set.seed(1)

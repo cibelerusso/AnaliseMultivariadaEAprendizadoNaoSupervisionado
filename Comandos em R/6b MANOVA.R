@@ -1,10 +1,13 @@
+# SME0822 Análise Multivariada e Aprendizado Supervisionado
+# Prof. Cibele Russo - ICMC USP
+
 # Aplicação: MANOVA: Comparação de médias multidimensionais em 5 grupos
 # época: a época à qual o crânio foi atribuído, um fator ordenado com níveis c4000BC, c3300BC, c1850BC, c200BC e cAD150, onde os anos são dados apenas aproximadamente, é claro.
 # MB: largura máxima do crânio.
 # bh: altura basibregmática do crânio.
 # bl: comprimento basialveolar do crânio.
 # nh: altura nasal do crânio.
-# por Cibele Russo - ICMC USP
+
 
 # Fontes: http://friendly.github.io/heplots/reference/Skulls.html
 # https://cran.r-project.org/web/packages/heplots/vignettes/HE-examples.pdf

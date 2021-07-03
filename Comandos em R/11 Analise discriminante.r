@@ -1,9 +1,12 @@
+# SME0822 Análise Multivariada e Aprendizado Supervisionado
+# Prof. Cibele Russo - ICMC USP
+
 rm(list=ls(all=TRUE))
 gc(TRUE)
 
 #set.seed(1) 
 
-dados.banc<-read.table("C:/Users/User/Desktop/ESTUDAR/MONITORIA/Aula 2020.11.26/Dados_bancarios.csv", header=TRUE, sep=";", dec=",")
+dados.banc<-read.table("https://raw.githubusercontent.com/cibelerusso/AnaliseMultivariadaEAprendizadoNaoSupervisionado/master/Dados/Dados_bancarios.csv", header=TRUE, sep=";", dec=",")
 
 names(dados.banc)
 attach(dados.banc)

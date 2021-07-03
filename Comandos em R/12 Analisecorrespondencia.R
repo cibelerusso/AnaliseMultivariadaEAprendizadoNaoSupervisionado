@@ -1,3 +1,6 @@
+# SME0822 Análise Multivariada e Aprendizado Supervisionado
+# Prof. Cibele Russo - ICMC USP
+
 # Exemplo Análise de Correspondência - Exemplo cerâmica e sítios arqueológicos
 # Johnson e Wichern
 

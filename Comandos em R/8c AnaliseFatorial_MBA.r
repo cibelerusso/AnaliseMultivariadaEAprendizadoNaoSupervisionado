@@ -1,3 +1,6 @@
+# SME0822 Análise Multivariada e Aprendizado Supervisionado
+# Prof. Cibele Russo - ICMC USP
+
 # Dados MBA Car
 # Aula 8c - Análise fatorial 
 # --- Leitura dos dados em .csv --- #

@@ -1,7 +1,10 @@
+# SME0822 Análise Multivariada e Aprendizado Supervisionado
+# Prof. Cibele Russo - ICMC USP
+
 
 # Alguns comandos básicos - Análise de Agrupamentos
 
-dados<-read.csv("/home/cibele/Dados/ONU.csv", header=TRUE)
+dados<-read.table("https://raw.githubusercontent.com/cibelerusso/AnaliseMultivariadaEAprendizadoNaoSupervisionado/master/Dados/ONU.csv", header=TRUE)
 
 rownames(dados)<-dados[,1]
 
