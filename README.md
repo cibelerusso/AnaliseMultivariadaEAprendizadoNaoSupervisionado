@@ -8,7 +8,7 @@ Por Cibele Russo - ICMC USP
 
 Se você usar este repositório, cite-o:
 
-Russo, C. M. (2023). cibelerusso/AnaliseMultivariadaEAprendizadoNaoSupervisionado: Análise Multivariada e Aprendizado Não Supervisionado (Version v0.0.0). https://doi.org/10.5281/zenodo.10002921
+Russo, C. M. (2023). cibelerusso/AnaliseMultivariadaEAprendizadoNaoSupervisionado: Análise Multivariada e Aprendizado Não Supervisionado (Version v0.0.0). https://doi.org/10.5281/zenodo.10002921 
 
 @misc{Russo_cibelerusso_AnaliseMultivariadaEAprendizadoNaoSupervisionado_Analise_Multivariada_2023,
 author = {Russo, Cibele M.},
