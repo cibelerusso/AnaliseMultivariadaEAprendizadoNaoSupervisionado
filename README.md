@@ -15,7 +15,7 @@ author = {Russo, Cibele M.},
 doi = {10.5281/zenodo.10002921},
 month = oct,
 title = {{cibelerusso/AnaliseMultivariadaEAprendizadoNaoSupervisionado: Análise Multivariada e Aprendizado Não Supervisionado}},
-url = {https://github.com/cibelerusso/AnaliseMultivariadaEAprendizadoNaoSupervisionado},
+url = {https://github.com/cibelerusso/AnaliseMultivariadaEAprendizadoNaoSupervisionado },
 year = {2023}
 }
 
