@@ -4,7 +4,7 @@ Aulas e comandos em R e Python do curso SME0822 Análise Multivariada e Aprendiz
 
 Por Cibele Russo - ICMC USP
 
-[![DOI](https://sandbox.zenodo.org/badge/290669218.svg)](https://zenodo-rdm-qa.web.cern.ch/doi/10.5281/zenodo.10002920)
+[![DOI](https://sandbox.zenodo.org/badge/290669218.svg)](https://zenodo-rdm-qa.web.cern.ch/doi/10.5281/zenodo.10002921)
 
 Se você usar este repositório, cite-o:
 
