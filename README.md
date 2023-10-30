@@ -18,3 +18,4 @@ title = {{cibelerusso/AnaliseMultivariadaEAprendizadoNaoSupervisionado: Análise
 url = {https://github.com/cibelerusso/AnaliseMultivariadaEAprendizadoNaoSupervisionado},
 year = {2023}
 }
+
