@@ -1,0 +1,12 @@
+cff-version: 1.2.0
+message: "If you use this repository, please cite it as below."
+type: misc
+authors:
+- family-names: "Russo"
+  given-names: "Cibele M."
+  orcid: "https://orcid.org/0000-0003-1356-0245"
+title: "cibelerusso/AnaliseMultivariadaEAprendizadoNaoSupervisionado: Análise Multivariada e Aprendizado Não Supervisionado"
+version: v0.0.0
+doi: 10.5281/zenodo.10002921
+date-released: 2023-10-30
+url: "https://github.com/cibelerusso/AnaliseMultivariadaEAprendizadoNaoSupervisionado"
