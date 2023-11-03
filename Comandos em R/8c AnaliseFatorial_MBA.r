@@ -1,31 +1,30 @@
-# SME0822 Análise Multivariada e Aprendizado Supervisionado
-# Prof. Cibele Russo - ICMC USP
+# SME0822 Análise Multivariada e Aprendizado Não-Supervisionado
+# Prof. Cibele Russo - ICMC USP 
+# Atualizado em 3/11/2023 com contribuição de Fernando Masumoto (@fernandohitmas)
 
 # Dados MBA Car
 # Aula 8c - Análise fatorial 
 # --- Leitura dos dados em .csv --- #
 
-dados<-read.csv("https://edisciplinas.usp.br/mod/resource/view.php?id=3253262", sep=";")
+dados<-read.csv("https://raw.githubusercontent.com/cibelerusso/AnaliseMultivariadaEAprendizadoNaoSupervisionado/master/Dados/MBA_CAR_ATTRIB.csv", sep=";")
 View(dados)
 
+# Uma possibilidade para lidar com dados faltantes é a exclusão. Existem outras. 
 dados<-na.exclude(dados)
 
 X <- as.matrix(dados[,3:18])
 
-Media<-apply(X, 2, mean)
-Media
+# Padronização sugerida por @fernandohitmas
+Z <-  apply(X, 2, function(x) (x - mean(x))/sd(x))
+mean(Z)
+cov(Z)
 
-DP<-apply(X, 2, sd)
-DP
-
-Z<-(X-Media)/DP
-
-#Var<-apply(X,2,var)
-
+# Instale o macote mvShapiroTest se necessário
 #install.packages("mvShapiroTest")
 library(mvShapiroTest)
 mvShapiro.Test(Z)
 
+# Como a normalidade foi rejeitada, estimação via Fatores principais
 # Método das Componentes Principais (Fatores principais)
 S<-cov(Z)
 plot(eigen(S)$values, type="b")
@@ -34,10 +33,11 @@ eigen(S)$values
 n <- nrow(Z)
 p <- ncol(Z)
 
-
 par(mfrow=c(2,8))
 for(i in 1:16)
-boxplot(Z[,i], main=names(Z)[i])
+  boxplot(Z[,i], main=names(Z)[i])
+
+par(mfrow=c(1,1))
 
 # --- Critério: Scree plot --- #
 plot(eigen(cor(Z))[[1]], type="b", pch=16, main="Scree plot", ylab="autovalor", xlab="ordem da componente")
@@ -49,18 +49,17 @@ sum(princomp(Z, cor=TRUE)[[1]]>1)
 
 # --- Cargas fatoriais --- #
 L = cbind(sqrt(eigen(cov(Z))[[1]][1]) * eigen(cov(Z))[[2]][,1],
-sqrt(eigen(cov(Z))[[1]][2]) * eigen(cov(Z))[[2]][,2],
-sqrt(eigen(cov(Z))[[1]][3]) * eigen(cov(Z))[[2]][,3])
+          sqrt(eigen(cov(Z))[[1]][2]) * eigen(cov(Z))[[2]][,2],
+          sqrt(eigen(cov(Z))[[1]][3]) * eigen(cov(Z))[[2]][,3])
 
 round(L, 2)
 
 # --- Rotação varimax --- #
 analise_fatorial_varimax <- varimax(cbind(sqrt(eigen(cor(Z))[[1]][1]) * eigen(cor(Z))[[2]][,1],
-sqrt(eigen(cor(Z))[[1]][2]) * eigen(cor(Z))[[2]][,2],
-sqrt(eigen(cor(Z))[[1]][3]) * eigen(cor(Z))[[2]][,3]))
+                                          sqrt(eigen(cor(Z))[[1]][2]) * eigen(cor(Z))[[2]][,2],
+                                          sqrt(eigen(cor(Z))[[1]][3]) * eigen(cor(Z))[[2]][,3]))
 
 L <- analise_fatorial_varimax$loadings
-
 round(L, 2)
 
 # Escores: Método da Regressão
@@ -77,12 +76,14 @@ boxplot(escores[,3] ~ dados$ID_carro)
 
 #Verificando se a matriz de rotação é ortogonal
 A<-varimax(cbind(sqrt(eigen(cor(Z))[[1]][1]) * eigen(cor(Z))[[2]][,1],
-sqrt(eigen(cor(Z))[[1]][2]) * eigen(cor(Z))[[2]][,2],
-sqrt(eigen(cor(Z))[[1]][3]) * eigen(cor(Z))[[2]][,3]))$rotmat
+                 sqrt(eigen(cor(Z))[[1]][2]) * eigen(cor(Z))[[2]][,2],
+                 sqrt(eigen(cor(Z))[[1]][3]) * eigen(cor(Z))[[2]][,3]))$rotmat
 
 round(A %*% t(A),2)
 
-# factanal só estima por máxima verossimilhança!! Como saber se podemos fazer a análise dessa forma?
+# factanal só estima por máxima verossimilhança com a suposição de normalidade!! 
+# Como saber se podemos fazer a análise dessa forma?
+# Cuidado, pois a normalidade foi rejeitada!! Apenas para ilustrar:
 
 analisefatorial <- factanal(Z, factors=3, rotation="varimax")
 analisefatorial
@@ -107,7 +108,6 @@ residuos <- cov(Z) - Rchapeu
 # --- Posso estimar o modelo utilizando o método da máxima verossimilhança?--- #
 
 #install.packages("mvShapiroTest") # Executar se não tiver o pacote
-
 library(mvShapiroTest)
 mvShapiro.Test(as.matrix(Z))
 
@@ -126,9 +126,8 @@ for (i in 1: n)
 qqplot(d, qchisq(ppoints(n), p), pch=16)
 abline(0,1)
 
+
 # --- Envelope para as distâncias - executar código da função antes --- #
 
 source("http://wiki.icmc.usp.br/images/2/23/Envelope.distancias.txt")
-envelope.distancias(d, n, Xbarra, S)
-
-
+envelope.distancias(d, n, MediaZ, S)
