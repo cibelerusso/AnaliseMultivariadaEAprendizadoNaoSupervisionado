@@ -61,29 +61,37 @@ dados = dados[,-1]
 
 # Categorização das variáveis
 dados$Salario_cat <- cut(dados$Salario,
-                         breaks=quantile(dados$Salario),
+                         breaks=quantile(dados$Salario, include.lowest = TRUE),
                          labels=c('D', 'C', 'B','A'))
 
 dados$Idade_cat <- cut(dados$Idade,
-                         breaks=quantile(dados$Idade),
+                         breaks=quantile(dados$Idade, include.lowest = TRUE),
                          labels=c('Idade1', 'Idade2', 'Idade3','Idade4'))
 
+dados$Dev_cat <- cut(dados$Devedor_cartao,
+                       breaks=quantile(dados$Devedor_cartao, include.lowest = TRUE),
+                       labels=c('Dev1', 'Dev2', 'Dev3','Dev4'))
+
+
 # Seleção das variáveis categóricas
-dados_categorizados = select(dados, Sexo, Idade_cat, Empresa, Salario_cat, Distrito)
+dados_categorizados = select(dados, Sexo, Idade_cat, Inadimplente)
 
-res_mca <- MCA(dados_categorizados, graph = TRUE)
+res_mca <- MCA(dados_categorizados, graph = TRUE,)
 
-fviz_mca_var(res_mca, choice='mca.cor', shape.var = 2)
-
-fviz_mca_var(res_mca,  
+fviz_mca_var(res_mca, repel=TRUE, choice='var.cat',
              shape.var = 2)
+
+fviz_mca_var(res_mca, repel=TRUE, choice='mca.cor',
+             shape.var = 2)
+
+fviz_eig(res_mca)
 
 res_mca <- MCA(dados_categorizados, graph = TRUE)
 
 
 fviz_mca_ind(res_mca, 
-             label = "none", # hide individual labels
-             habillage = c('Sexo', 'Salario_cat'), # color by groups 
+             #label = "none", # hide individual labels
+             habillage = c( 'Inadimplente'), # color by groups 
              addEllipses = TRUE,
              ggtheme = theme_minimal()) 
 
