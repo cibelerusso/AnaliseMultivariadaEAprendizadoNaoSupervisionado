@@ -1,16 +1,16 @@
-# Exemplo An√°lise de Correspond√™ncia - Dados banco
+# Exemplo An·lise de CorrespondÍncia - Dados banco
 # Profa. Cibele Russo
 
-#install.packages('pollster')
-#install.packages('dplyr')
-#install.packages('knitr')
-#install.packages('ggplot2')
-#install.packages(c('FactoMineR', 'factoextra'))
-#install.packages('ca')
-#install.packages('vcd')
-#install.packages('table1')
-#install.packages('pivottabler')
-#install.packages('data.table')
+install.packages('pollster')
+install.packages('dplyr')
+install.packages('knitr')
+install.packages('ggplot2')
+install.packages(c('FactoMineR', 'factoextra'))
+install.packages('ca')
+install.packages('vcd')
+install.packages('table1')
+install.packages('pivottabler')
+install.packages('data.table')
 library(pollster)
 library(dplyr)
 #library(knitr)
@@ -23,11 +23,12 @@ library(dplyr)
 dados<-read.csv('https://raw.githubusercontent.com/cibelerusso/Datasets/main/amostra_banco_distrito.csv', dec = ',')
 colnames(dados)  
 
-
-# Criar 5 faixas de renda a partir dos quantis
+# CategorizaÁ„o da vari·vel Salario
+# Criar 4 faixas de renda a partir dos quantis
 
 dados$Salario_cat <- cut(dados$Salario,
                          breaks=quantile(dados$Salario),
+                         include.lowest = TRUE,
                          labels=c('D', 'C', 'B','A'))
 
 tabela <- table(dados$Empresa, dados$Salario_cat)
@@ -44,8 +45,11 @@ colnames(X)<-colnames(tabela)
 library('vcd') 
 mosaic(X, 
        shade=TRUE,
-       main = "Gr√°fico de mosaico"
+       main = "Gr·fico de mosaico"
 ) 
+
+# Teste Qui-quadrado 
+chisq.test(X)
 
 fit<-ca(X)
 
@@ -53,30 +57,32 @@ print(fit) # basic results
 summary(fit) # extended results 
 plot(fit) # symmetric map
 
-# Teste Qui-quadrado 
-chisq.test(X)
 
-## An√°lise de correspond√™ncia m√∫ltipla
+
+## An·lise de correspondÍncia m˙ltipla
 dados = dados[,-1]
 
-# Categoriza√ß√£o das vari√°veis
+# CategorizaÁ„o das vari·veis
 dados$Salario_cat <- cut(dados$Salario,
-                         breaks=quantile(dados$Salario, include.lowest = TRUE),
+                         breaks=quantile(dados$Salario), include.lowest = TRUE,
                          labels=c('D', 'C', 'B','A'))
 
 dados$Idade_cat <- cut(dados$Idade,
-                         breaks=quantile(dados$Idade, include.lowest = TRUE),
-                         labels=c('Idade1', 'Idade2', 'Idade3','Idade4'))
+                       breaks=quantile(dados$Idade), include.lowest = TRUE,
+                       labels=c('Idade1', 'Idade2', 'Idade3','Idade4'))
 
 dados$Dev_cat <- cut(dados$Devedor_cartao,
-                       breaks=quantile(dados$Devedor_cartao, include.lowest = TRUE),
-                       labels=c('Dev1', 'Dev2', 'Dev3','Dev4'))
+                     breaks=quantile(dados$Devedor_cartao), include.lowest = TRUE,
+                     labels=c('Dev1', 'Dev2', 'Dev3','Dev4'))
+
+# SeleÁ„o das vari·veis categÛricas
+dados_categorizados = select(dados, Sexo, Inadimplente, Empresa, Dev_cat, Idade_cat)
+
+dados_categorizados <- lapply(dados_categorizados, as.factor) %>% 
+                       data.frame
 
 
-# Sele√ß√£o das vari√°veis categ√≥ricas
-dados_categorizados = select(dados, Sexo, Idade_cat, Inadimplente)
-
-res_mca <- MCA(dados_categorizados, graph = TRUE,)
+res_mca <- MCA(dados_categorizados, graph = TRUE)
 
 fviz_mca_var(res_mca, repel=TRUE, choice='var.cat',
              shape.var = 2)
