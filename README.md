@@ -12,7 +12,7 @@ Russo, C. M. (2023). cibelerusso/AnaliseMultivariadaEAprendizadoNaoSupervisionad
 
 @misc{Russo_cibelerusso_AnaliseMultivariadaEAprendizadoNaoSupervisionado_Analise_Multivariada_2023,
 author = {Russo, Cibele M.},
-doi = {https://doi.org/10.5281/zenodo.10203429},
+doi = {https://doi.org/10.5281/zenodo.10203429 },
 month = oct,
 title = {{cibelerusso/AnaliseMultivariadaEAprendizadoNaoSupervisionado: Análise Multivariada e Aprendizado Não Supervisionado}},
 url = {https://github.com/cibelerusso/AnaliseMultivariadaEAprendizadoNaoSupervisionado },
